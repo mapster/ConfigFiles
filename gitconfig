@@ -1,0 +1,17 @@
+[user]
+	name = mapster
+	email = mapster@ndt-lan.no
+
+[alias]
+	ci = commit -am
+	co = checkout
+	st = status 
+	praise = blame
+
+[status]
+	color = auto
+
+[branch]
+    color = auto
+[github]
+	user = mapster
