@@ -1,10 +1,20 @@
 #!/bin/bash
+echo -en "\e[00m"
+
+#text modifications
+GREEN="\e[1;32m"
+LGREEN="\e[0;32m"
+RED="\e[1;31m"
+YEL="\e[0;33m"
+CYAN="\e[0;36m"
+CLEAN="\e[00m"
 
 paths="`dirname $0`/paths"
 files="`dirname $0`/files"
 toInstall=""
 doUninst=false
 doCopy=false
+doAll=false
 
 printHelp(){
     echo "Install config files from $files to their specified paths from $files"
@@ -14,12 +24,35 @@ printHelp(){
     echo "--help        : print this fine help text"
     echo "--copy        : make hard copies of the files"
     echo "--uninstall   : remove files/links"
+    echo "--all         : perfom on all"
     echo "--list        : list available config files"
     echo ""
 }
 
 listFiles(){
-    echo `ls $files`
+    for i in `ls "$files"`
+    do
+        state=""
+        instPath="`cat $paths/$i.path`"
+        instPath="`eval echo $instPath`"
+        if [ -h $instPath ]; then
+            if [ `readlink -fn "$instPath"` != `readlink -fn "$files/$i"` ]; then
+                state="$RED Not installed $CYAN(wrong link)$CLEAN"
+            else
+                state="$GREEN Installed $CYAN(linked)$CLEAN"
+            fi
+        elif [ -f $instPath ]; then
+            if [ -z "`diff "$instPath" "$files/$i"`" ]; then
+                state="$GREEN Installed $YEL(hard-copy)$CLEAN"
+            else
+                state="$RED Not installed $LGREEN(exists)$CLEAN"
+            fi
+        else
+            state="$RED Not installed$CLEAN"
+        fi
+        printf "%-30s :   " "$i" 
+        echo -e "$state"
+    done
 }
 
 for i in $*
@@ -30,6 +63,9 @@ do
         ;;
         --copy)
             doCopy=true
+        ;;
+        --all)
+            doAll=true
         ;;
         --list)
             listFiles
@@ -55,6 +91,14 @@ if $doCopy && $doUninst; then
     exit
 fi
 
+if $doAll; then
+    toInstall=""
+    for i in `ls $files`
+    do
+        toInstall="$toInstall $i"
+    done
+fi
+
 for i in $toInstall
 do
     instPath="`cat $paths/$i.path`"
@@ -77,7 +121,9 @@ do
 
     #Linking
     else
-        msg=`ln -vs "$files/$i" "$instPath"`
+	    PWD=`pwd`
+        abs="`readlink -fn "$PWD/$files/$i"`"
+        msg=`ln -vs "$abs" "$instPath"`
         echo "Linking $i: $msg"
     fi
 done
