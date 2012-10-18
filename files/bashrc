@@ -18,4 +18,5 @@ export PATH=$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/
 export EDITOR=vim
 export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
+export TERM="rxvt-unicode"
 
