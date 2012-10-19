@@ -55,6 +55,11 @@ listFiles(){
     done
 }
 
+if [ $# -eq 0 ]; then
+    listFiles
+    exit
+fi
+
 for i in $*
 do
     case $i in
