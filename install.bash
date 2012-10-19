@@ -20,7 +20,7 @@ doLink=false
 
 printHelp(){
     echo "Install config files from $files to their specified paths from $files"
-    echo "(Symbolic links to the files in the repo is the default action"
+    echo "(Symbolic links to the files in the repo is the default action)"
     echo ""
     echo "Usage: $0 <action> [--all|-a] [--force|-f] [file1 [file2 ..]]"
     echo ""
