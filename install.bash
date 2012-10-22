@@ -59,6 +59,15 @@ listFiles(){
     done
 }
 
+verifyDir(){
+    toDir=`dirname "$instPath"`
+    if [ ! -d "$toDir" ]; then
+        msg=`mkdir -pv "$toDir"`
+        echo "$msg"
+    fi
+}
+
+
 #if no arguments exute default action
 if [ $# -eq 0 ]; then
     listFiles
@@ -134,21 +143,23 @@ do
         msg=`rm -v "$instPath" 2>&1`
         echo "Removing $i: $msg"
     fi
-        
+
     #Checking if file already exists
 
     if [ $doCopy -a -f $instPath ]; then 
         echo "Error - $i: $instPath already exists."
         exit
 
-    #Copying
+        #Copying
     elif $doCopy; then
+        verifyDir
         msg=`cp -v "$files/$i" "$instPath"`
         echo "Copying $i: $msg"
 
-    #Linking
+        #Linking
     elif $doLink; then
-	    PWD=`pwd`
+        verifyDir
+        PWD=`pwd`
         abs="`readlink -fn "$PWD/$files/$i"`"
         msg=`ln -vs "$abs" "$instPath"`
         echo "Linking $i: $msg"
