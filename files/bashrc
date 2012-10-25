@@ -12,6 +12,7 @@ alias df='df -h'
 alias du='du -h'
 alias ..='cd ..'
 alias o='xdg-open'
+alias pacman='sudo pacman'
 alias privatemode='export HISTFILE='
 
 export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin"
