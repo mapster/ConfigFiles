@@ -47,7 +47,7 @@ if $office; then
     /usr/bin/xrandr --output LVDS1 --off
     /usr/bin/xrandr --output HDMI1 --auto --right-of VGA1
 elif $standalone; then
-    /usr/bin/xrandr --output VGA1 --off
-    /usr/bin/xrandr --output LVDS1 --auto
     /usr/bin/xrandr --output HDMI1 --off
+    /usr/bin/xrandr --output LVDS1 --auto
+    /usr/bin/xrandr --output VGA1 --off
 fi

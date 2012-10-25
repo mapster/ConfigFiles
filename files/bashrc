@@ -14,7 +14,7 @@ alias ..='cd ..'
 alias o='xdg-open'
 alias privatemode='export HISTFILE='
 
-export PATH=$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:/home/mapster/.gem/ruby/1.9.1/bin
+export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin"
 export EDITOR=vim
 export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
