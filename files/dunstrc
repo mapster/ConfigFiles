@@ -66,7 +66,7 @@
     #
     # If this option is set to mouse or keyboard, the monitor option will be
     # ignored.
-    follow = none
+    follow = keyboard
 
     # should a notification popped up from history be sticky or
     # timeout as if it would normally do.
@@ -108,12 +108,12 @@
     # Otherwise the '#' and following  would be interpreted as a comment.
     background = "#aaaaff"
     foreground = "#000000"
-    timeout = 10
+    timeout = 120
 
 [urgency_normal]
     background = "#1793D1"
     foreground = "#DDDDDD"
-    timeout = 10
+    timeout = 120
 
 [urgency_critical]
     background = "#ffaaaa"
