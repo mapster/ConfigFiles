@@ -10,7 +10,7 @@ PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[m\] \[\e[1;32m\]\$ \[
 alias ls='ls -lh --color=auto'
 alias df='df -h'
 alias du='du -h'
-alias ..='cd ..'
+alias ..='cd ..; ';
 alias o='xdg-open'
 alias pacman='sudo pacman'
 alias privatemode='export HISTFILE='
@@ -21,3 +21,11 @@ export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
 export TERM="rxvt-unicode"
 
+
+for i in `seq 2 5` ; do
+    dots=".."
+    for j in `seq 2 $i`; do
+        dots="$dots/.."
+    done
+    alias "..$i"="cd $dots"
+done
