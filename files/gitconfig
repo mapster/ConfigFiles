@@ -15,3 +15,5 @@
     color = auto
 [github]
 	user = mapster
+[push]
+	default = simple
