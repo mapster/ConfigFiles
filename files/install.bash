@@ -59,7 +59,7 @@ listFiles(){
             if [ -z "`diff "$instPath" "$files/$i"`" ]; then
                 state="$GREEN Installed $YEL(hard-copy)$CLEAN"
             else
-                state="$RED Not installed $LGREEN(exists)$CLEAN"
+                state="$RED Old version $LGREEN(exists)$CLEAN"
             fi
         else
             state="$RED Not installed$CLEAN"

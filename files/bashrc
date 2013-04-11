@@ -20,6 +20,7 @@ export EDITOR=vim
 export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
 export TERM="rxvt-unicode"
+export LESSOPEN="|lesspipe.sh %s"
 
 
 for i in `seq 2 5` ; do
@@ -29,3 +30,43 @@ for i in `seq 2 5` ; do
     done
     alias "..$i"="cd $dots"
 done
+
+_restart() {
+    sudo systemctl restart $1
+}
+
+_start() {
+    sudo systemctl start $1
+}
+
+_status() {
+    systemctl status $1
+}
+
+_stop() {
+    sudo systemctl $1
+}
+
+_postFile() {
+    _extension="${1##*.}"
+    _header="Content-type:"
+    
+    case $_extension in
+        xml)
+            _header="$_header application/xml";;
+        json)
+            _header="$_header application/json";;
+        java)
+            _header="$_header text/x-java";;
+        *)
+            echo "Unknown extension, no Content-type set in header"
+            _header=""
+            ;;
+    esac
+
+    if [ -n $_header ]; then
+        curl -X POST -d @$1 -H $_header $2
+    else
+        curl -X POST -d "@$1"$2
+    fi
+}
