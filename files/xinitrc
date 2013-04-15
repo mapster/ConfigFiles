@@ -4,4 +4,5 @@ export GPG_AGENT_INFO
 export GNOME_KEYRING_CONTROL
 export GNOME_KEYRING_PID
 
+#exec $1
 exec i3
