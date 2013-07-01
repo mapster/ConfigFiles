@@ -40,5 +40,17 @@ let g:Tex_CompileRule_dvi='latex -interaction=nonstopmode --src-specials $*'
 let g:Tex_CompileRule_pdf='pdflatex -interaction=nonstopmode $*'
 let g:Tex_MultipleCompileFormats='pdf,dvi'
 
+let g:Tex_IgnoredWarnings =
+            \"Underfull\n".
+            \"Overfull\n".
+            \"specifier changed to\n".
+            \"You have requested\n".
+            \"Missing number, treated as zero.\n".
+            \"There were undefined references\n".
+            \"Citation %.%# undefined\n".
+            \'LaTeX Font '"
+" This number N says that latex-suite should ignore the first N of the above.
+let g:Tex_IgnoreLevel = 8
+
 "colorscheme
 au FileType tex colorscheme desert

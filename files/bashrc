@@ -44,7 +44,7 @@ _status() {
 }
 
 _stop() {
-    sudo systemctl $1
+    sudo systemctl stop $1
 }
 
 _postFile() {
@@ -64,9 +64,9 @@ _postFile() {
             ;;
     esac
 
-    if [ -n $_header ]; then
-        curl -X POST -d @$1 -H $_header $2
+    if [ -n "$_header" ]; then
+        curl -X POST -d @$1 -H "$_header" $2
     else
-        curl -X POST -d "@$1"$2
+        curl -X POST -d "@$1" $2
     fi
 }
