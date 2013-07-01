@@ -1,6 +1,7 @@
 # autofullfør ved bruk av sudo
 complete -cf sudo
 source ~/.git-completion.bash
+# [ -r $HOME/Documents/repos/rerun/etc/bash_completion.sh ] && source $HOME/Documents/repos/rerun/etc/bash_completion.sh
 
 # prompt linje
 # "bruker@server arbeidsmappe $ "
@@ -14,7 +15,10 @@ alias ..='cd ..; ';
 alias o='xdg-open'
 alias pacman='sudo pacman'
 alias privatemode='export HISTFILE='
+alias reboot='sudo reboot'
+alias poweroff='sudo poweroff'
 
+#export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin:$HOME/Documents/repos/rerun"
 export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin"
 export EDITOR=vim
 export BROWSER=chromium
