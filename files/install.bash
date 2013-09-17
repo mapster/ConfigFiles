@@ -149,7 +149,7 @@ do
     instPath="`eval echo $instPath`"
 
     #Uninstalling if specified
-    if $doUninst; then
+    if [ $doUninst -a -f $instPath ] ; then
         msg=`rm -v "$instPath" 2>&1`
         echo "Removing $i: $msg"
     fi

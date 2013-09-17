@@ -3,6 +3,9 @@ complete -cf sudo
 source ~/.git-completion.bash
 # [ -r $HOME/Documents/repos/rerun/etc/bash_completion.sh ] && source $HOME/Documents/repos/rerun/etc/bash_completion.sh
 
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
 # prompt linje
 # "bruker@server arbeidsmappe $ "
 PS1='\[\e[0;32m\]\u@\h\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[m\] \[\e[1;32m\]\$ \[\e[m\]\[\e[1;37m\] '
