@@ -21,8 +21,7 @@ alias privatemode='export HISTFILE='
 alias reboot='sudo reboot'
 alias poweroff='sudo poweroff'
 
-#export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin:$HOME/Documents/repos/rerun"
-export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$HOME/.gem/ruby/1.9.1/bin:$HOME/bin"
+export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$HOME/bin"
 export EDITOR=vim
 export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
