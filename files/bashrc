@@ -20,6 +20,7 @@ alias pacman='sudo pacman'
 alias privatemode='export HISTFILE='
 alias reboot='sudo reboot'
 alias poweroff='sudo poweroff'
+alias netstat='netstat -lnptu'
 
 export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$HOME/bin"
 export EDITOR=vim
@@ -54,12 +55,19 @@ _stop() {
 }
 
 _postFile() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: _postFile <file> <url>"
+        return
+    fi
+
     _extension="${1##*.}"
     _header="Content-type:"
     
     case $_extension in
         xml)
             _header="$_header application/xml";;
+        jsonld)
+            _header="$_header application/ld+json";;
         json)
             _header="$_header application/json";;
         java)
@@ -71,8 +79,8 @@ _postFile() {
     esac
 
     if [ -n "$_header" ]; then
-        curl -X POST -d @$1 -H "$_header" $2
+        curl -vi -X POST -d @$1 -H "$_header" $2
     else
-        curl -X POST -d "@$1" $2
+        curl -vi -X POST -d "@$1" $2
     fi
 }
