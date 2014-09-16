@@ -1,6 +1,6 @@
 [user]
 	name = mapster
-	email = mapster@ndt-lan.no
+	email = alexander@rosbach.no
 
 [alias]
 	ci = commit -am
