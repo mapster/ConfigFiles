@@ -21,6 +21,7 @@ alias privatemode='export HISTFILE='
 alias reboot='sudo reboot'
 alias poweroff='sudo poweroff'
 alias netstat='netstat -lnptu'
+alias fuck='sudo $(history -p \!\!)'
 
 export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$HOME/bin"
 export EDITOR=vim
@@ -54,18 +55,26 @@ _stop() {
     sudo systemctl stop $1
 }
 
-_postFile() {
+_request() {
     if [ $# -ne 2 ]; then
         echo "Usage: _postFile <file> <url>"
+        return
+    fi
+    if [ "$_METHOD" != "PUT" -a "$_METHOD" != "POST" ] ; then
+        echo "Method not given, set env variable _METHOD (=$_METHOD)"
         return
     fi
 
     _extension="${1##*.}"
     _header="Content-type:"
-    
+
     case $_extension in
         xml)
             _header="$_header application/xml";;
+        rdf)
+            _header="$_header application/rdf+xml";;
+        ttl)
+            _header="$_header text/turtle";;
         jsonld)
             _header="$_header application/ld+json";;
         json)
@@ -79,8 +88,38 @@ _postFile() {
     esac
 
     if [ -n "$_header" ]; then
-        curl -vi -X POST -d @$1 -H "$_header" $2
+        curl -vi -X $_METHOD -d @$1 -H "$_header; charset=utf-8" $2
     else
-        curl -vi -X POST -d "@$1" $2
+        curl -vi -X $_METHOD -d "@$1" $2
     fi
+}
+
+_putFile(){
+    _METHOD="PUT"
+    _request $1 $2
+}
+
+_postFile(){
+    _METHOD="POST"
+    _request $1 $2
+}
+
+_decryptgpg(){
+    if [ $# -ne 1 ]; then
+        echo "Usage: _decryptgpg <file>"
+        return
+    fi
+
+    sudo /sbin/mke2fs -q -m 0 /dev/ram0
+    mkdir ram
+    sudo /bin/mount /dev/ram0 ram
+    sudo /bin/chown ahr:ahr ram
+
+    /usr/bin/gpg -d $1 | /bin/tar -x -C ram
+}
+
+_cleardecrypted(){
+    sudo /bin/umount ram
+    sudo /bin/dd if=/dev/zero of=/dev/ram0
+    rmdir ram
 }
