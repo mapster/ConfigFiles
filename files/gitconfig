@@ -7,6 +7,7 @@
 	co = checkout
 	st = status 
 	praise = blame
+	lg = log --color --graph --abbrev-commit\n           --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset'
 
 [status]
 	color = auto
@@ -17,3 +18,5 @@
 	user = mapster
 [push]
 	default = simple
+[core]
+	autocrlf = input
