@@ -23,7 +23,8 @@ alias poweroff='sudo poweroff'
 alias netstat='netstat -lnptu'
 alias fuck='sudo $(history -p \!\!)'
 
-export PATH="$PATH:/opt/java/bin:/opt/java/jre/bin:/opt/java/lib:/usr/share/java/apache-ant/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$HOME/bin"
+# /opt/java/bin:/opt/java/jre/bin:/opt/java/lib:
+export PATH="$PATH:/usr/share/java/apache-ant/bin:$(ruby -rubygems -e "puts Gem.user_dir")/bin:$HOME/bin"
 export EDITOR=vim
 export BROWSER=chromium
 export LOGOLIB=/usr/lib/logo/logolib
@@ -38,6 +39,30 @@ for i in `seq 2 5` ; do
     done
     alias "..$i"="cd $dots"
 done
+
+up () {
+    number='^[0-9]+$'
+    n=1
+    
+    if [ $# -gt 0 ]; then
+        if [[ $1 =~ $number ]] ; then
+            n=$1
+            shift
+        fi
+
+        if [ $# -eq 1 ]; then
+            path="$1"
+        fi
+    fi
+
+    for i in `seq 1 $n`; do
+        cd ..
+    done
+
+    if [ -n "${path}" ]; then
+        cd $path
+    fi
+}
 
 _restart() {
     sudo systemctl restart $1
