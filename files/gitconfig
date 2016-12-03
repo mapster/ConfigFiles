@@ -18,3 +18,5 @@
 	user = mapster
 [push]
 	default = simple
+[core]
+	autocrlf = input
