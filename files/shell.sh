@@ -13,7 +13,7 @@ if [ -n "$PID" ] ; then
     fi
 fi
 if [ -n "$CWD" ]; then
-    i3-sensible-terminal -cd $CWD &
+    termite -d $CWD &
 else
-    i3-sensible-terminal &
+    termite &
 fi

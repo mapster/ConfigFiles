@@ -1,7 +1,21 @@
 #!/bin/bash
 
-office=false
-standalone=false
+MODES_PATH=$HOME/.screenlayout
+
+listModes() {
+    echo `/usr/bin/ls $MODES_PATH`
+}
+
+describeModes() {
+    printf "%-30s    :    %s\n" "<name>" "<description>"
+    echo "----------------------------------------------------"
+    for m in `listModes` ; do
+        all="`$MODES_PATH/$m describe`"
+        name=`echo "$all" | cut -d ";" -f 1`
+        desc=`echo "$all" | cut -d ";" -f 2`
+        printf "%-30s    :    %s\n" "$name" "$desc"
+    done
+}
 
 printHelp(){
     echo "Setup monitors using xrandr to predefined modes."
@@ -9,10 +23,22 @@ printHelp(){
     echo "Usage: $0 <mode>"
     echo ""
     echo "Available modes:"
-    printf "%-12s   :   %s\n" "office" "LVDS1 off, VGA1 auto left, HDMI1 auto right"
-    printf "%-12s   :   %s\n" "standalone" "LVDS1 off, VGA1 and HDMI1 off"
-    printf "%-12s   :   %s\n" "help" "print this fine help text"
     echo ""
+    describeModes
+    echo ""
+}
+
+changeMode() {
+   for m in `listModes` ; do
+       all=`$MODES_PATH/$m describe`
+       name=`echo "$all" | cut -d ";" -f 1`
+       if [ "$name" = "$1" ] ; then
+           echo "Switching to $name"
+           /bin/sh $MODES_PATH/$m
+           exit
+       fi
+   done
+   echo "Error: No such mode $1"
 }
 
 
@@ -22,31 +48,13 @@ if [ $# -lt 1 ]; then
 fi
 
 case $1 in
-    office|o*)
-        echo "Office mode selected."
-        office=true
-        ;;
-    standalone|s*)
-        echo "Standalone mode selected."
-        standalone=true
-        ;;
-    help|h*)
+    help)
         printHelp
         exit
         ;;
     *)
-        echo "Not a valid mode."
-        echo "---"
-        printHelp
-        exit
+        changeMode $1
         ;;
 esac
 
-if $office; then
-    /usr/bin/xrandr --output DVI-I-2 --auto
-    /usr/bin/xrandr --output DVI-I-1 --right-of DVI-I-2
-elif $standalone; then
-    /usr/bin/xrandr --output HDMI1 --off
-    /usr/bin/xrandr --output LVDS1 --auto
-    /usr/bin/xrandr --output VGA1 --off
-fi
+nitrogen --restore

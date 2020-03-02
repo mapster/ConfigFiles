@@ -64,7 +64,7 @@ listFiles(){
         else
             state="$RED Not installed$CLEAN"
         fi
-        printf "%-30s :   " "$i" 
+        printf "%-50s :   " "$i" 
         echo -e "$state"
     done
 }
