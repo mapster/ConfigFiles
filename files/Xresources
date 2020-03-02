@@ -1,0 +1,23 @@
+URxvt*foreground: White
+URxvt*background: Black
+
+! Prevent scroll on output
+URxvt*scrollTtyOutput: false
+URxvt*scrollWithBuffer: true
+URxvt*scrollTtyKeypress: true
+URxvt*scrollBar: false
+
+! Scroll in less
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 0
+
+! Font 
+URxvt.letterSpace: -1
+URxvt.font: xft:Terminus:pixelsize=12
+URxvt.boldfont: xft:Terminus:bold:pixelsize=15
+
+! Clickable URL
+URxvt.perl-ext-common: default,matcher
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.matcher.rend.0: Uline Bold fg5

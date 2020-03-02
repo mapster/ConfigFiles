@@ -1,5 +1,5 @@
 [user]
-	name = mapster
+	name = Alexander Hoem Rosbach
 	email = alexander@rosbach.no
 
 [alias]
@@ -7,7 +7,7 @@
 	co = checkout
 	st = status 
 	praise = blame
-	lg = log --color --graph --abbrev-commit\n           --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset'
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 
 [status]
 	color = auto
