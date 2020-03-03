@@ -1,3 +1,3 @@
 #!/bin/bash
 
-maim -s ~/bilder/screenshots/$(date +%F-%T).png
+maim -s ~/Pictures/screenshots/$(date +%F-%T).png
