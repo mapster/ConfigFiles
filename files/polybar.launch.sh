@@ -7,7 +7,7 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 
 for m in $(polybar --list-monitors | cut -d":" -f1); do
     tray=
-    if [ "$m" = "eDP1" ]; then
+    if [ "$m" = "eDP-1" ]; then
         tray='left'
     fi
     TRAY=$tray MONITOR=$m polybar --reload bar1 &
