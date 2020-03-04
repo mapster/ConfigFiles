@@ -3,7 +3,7 @@
 MODES_PATH=$HOME/.screenlayout
 
 listModes() {
-    echo `/usr/bin/ls $MODES_PATH`
+    echo `/bin/ls $MODES_PATH`
 }
 
 describeModes() {
