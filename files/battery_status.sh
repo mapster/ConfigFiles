@@ -50,6 +50,12 @@ if [[ ! "$2" =~ ^half|low|critical$ ]] ; then
     printHelp
     exit 1
 fi
+
+if [[ "$(cat $BATTERY/status)" == "Charging" ]] ; then
+    echo "Battery is charging, won't notify."
+    exit 0
+fi
+
 level="$2"
 
 now=`cat $BATTERY/energy_now`

@@ -1,6 +1,6 @@
 [user]
 	name = Alexander Hoem Rosbach
-	email = alexander@rosbach.no
+	email = ahr@computas.com
 
 [alias]
 	ci = commit -am
