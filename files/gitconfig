@@ -1,6 +1,9 @@
 [user]
 	name = Alexander Hoem Rosbach
-	email = ahr@computas.com
+	email = alexander@rosbach.no
+
+[includeIf "gitdir:~/development/nav-repos/**"]
+    path = ~/development/nav-repos/.gitconfig
 
 [alias]
 	ci = commit -am
@@ -8,14 +11,15 @@
 	st = status 
 	praise = blame
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+	fa = fetch --all
 
 [status]
 	color = auto
 
 [branch]
     color = auto
-[github]
-	user = mapster
+#[github]
+#	user = mapster
 [push]
 	default = simple
 [core]

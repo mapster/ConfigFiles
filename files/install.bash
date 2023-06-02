@@ -123,7 +123,7 @@ do
             doUninst=true
             ;;
         *)
-            if [ -f "$files/$i" ]; then
+            if [ -f "$files/$i" -o -d "$files/$i" ]; then
                 toInstall="$toInstall $i"
             else
                 echo "$i: No such config file."
@@ -163,7 +163,7 @@ do
         #Copying
     elif $doCopy; then
         verifyDir
-        msg=`cp -v "$files/$i" "$instPath"`
+        msg=`cp -rv "$files/$i" "$instPath"`
         echo "Copying $i: $msg"
 
         #Linking
