@@ -108,7 +108,7 @@ source $ZSH/oh-my-zsh.sh
 prompt_context() {}
 
 # ENV
-export PATH="$HOME/.bin:$PATH"
+export PATH="$HOME/.bin:$HOME/.local/share/JetBrains/Toolbox/scripts:$PATH"
 export EDITOR=vim
 
 # SSH yubikey
