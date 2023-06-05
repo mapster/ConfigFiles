@@ -1,0 +1,5 @@
+[pass-provider]
+list_cmd=find  ~/.password-store/ -name \*.gpg | sed 's:.*/.password-store/\(.*\)\.gpg:\1\o034pass-provider\o034\o33[31m 🔒\o033[0m\1:g'
+preview_cmd=echo "Decrypt and copy to clipboard: {1}"
+launch_cmd=pass -c {1}; notify-send "Copied {1} to clipboard"
+purge_cmd=ls ~/.password-store/{1}.gpg || exit 43
