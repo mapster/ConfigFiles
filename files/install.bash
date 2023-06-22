@@ -55,7 +55,7 @@ listFiles(){
             else
                 state="$GREEN Installed $CYAN(linked)$CLEAN"
             fi
-        elif [ -f $instPath ]; then
+        elif [ -e $instPath ]; then
             if [ -z "`diff "$instPath" "$files/$i"`" ]; then
                 state="$GREEN Installed $YEL(hard-copy)$CLEAN"
             else
@@ -78,7 +78,6 @@ verifyDir(){
 }
 
 
-#if no arguments exute default action
 if [ $# -eq 0 ]; then
     listFiles
     exit
@@ -149,14 +148,14 @@ do
     instPath="`eval echo $instPath`"
 
     #Uninstalling if specified
-    if [ $doUninst -a -f $instPath ] ; then
-        msg=`rm -v "$instPath" 2>&1`
+    if [ $doUninst -a -e $instPath ] ; then
+        msg=`rm -rv "$instPath" 2>&1`
         echo "Removing $i: $msg"
     fi
 
     #Checking if file already exists
 
-    if [ $doCopy -a -f $instPath ]; then 
+    if [ $doCopy -a -e $instPath ]; then 
         echo "Error - $i: $instPath already exists."
         exit
 
