@@ -121,3 +121,5 @@ export NVM_DIR="$HOME/.nvm"
 # Z - jump around (https://github.com/rupa/z)
 source ~/development/repos/z/z.sh
 
+# Kubeconfig NAV (kan fjernes når .config/environment.d/100-nav.conf er i effekt)
+export KUBECONFIG=$HOME/development/nav-repos/kubeconfigs/config

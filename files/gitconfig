@@ -25,3 +25,5 @@
 	autoSetupRemote = true
 [core]
 	autocrlf = input
+[pager]
+	branch = false
