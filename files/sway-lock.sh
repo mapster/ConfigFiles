@@ -4,6 +4,6 @@
 # an image to use for the lock screen.
 
 grim /tmp/_sway_lock_image.png
-ffmpeg -i /tmp/_sway_lock_image.png -filter_complex "gblur=sigma=50" /tmp/sway_lock_image.png -y
+ffmpeg -loglevel fatal -i /tmp/_sway_lock_image.png -filter_complex "gblur=sigma=50" /tmp/sway_lock_image.png -y
 
 swaylock -i /tmp/sway_lock_image.png
